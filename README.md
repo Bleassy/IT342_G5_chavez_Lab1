@@ -323,7 +323,7 @@ Most CORS issues are resolved by ensuring the backend CORS configuration include
 
 ## Contributors
 
-- **Developer**: [Your Name]
+- **Developer**: Chavez, Bliss B
 - **Course**: IT342
 - **Group**: G5
 - **Submission Date**: February 9, 2024
@@ -331,10 +331,6 @@ Most CORS issues are resolved by ensuring the backend CORS configuration include
 ## License
 
 This project is for educational purposes as part of IT342 course.
-
-## Support
-
-For issues or questions, please refer to the documentation in the `/docs` folder or contact the development team.
 
 ---
 

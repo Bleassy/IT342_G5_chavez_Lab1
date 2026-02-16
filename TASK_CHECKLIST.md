@@ -473,10 +473,10 @@ npm start
 
 ## 👥 Contributors
 
-- **Developer**: [Your Name]
+- **Developer**: Chavez
 - **Course**: IT342
-- **Group**: G5
-- **Institution**: [Your Institution]
+- **Group**: G2
+- **Institution**: CITU
 
 ---
 

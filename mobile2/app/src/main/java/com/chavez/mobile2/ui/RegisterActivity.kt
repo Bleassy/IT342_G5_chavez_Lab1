@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.chavez.mobile2.databinding.ActivityRegisterBinding
+import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -31,7 +33,6 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            // Call backend API for registration
             registerUser(username, email, password, firstName, lastName, phoneNumber)
         }
 
@@ -48,7 +49,8 @@ class RegisterActivity : AppCompatActivity() {
         lastName: String?,
         phoneNumber: String?
     ) {
-        kotlinx.coroutines.GlobalScope.launch(kotlinx.coroutines.Dispatchers.Main) {
+        // ✅ Use lifecycleScope instead of GlobalScope
+        lifecycleScope.launch {
             try {
                 val response = com.chavez.mobile2.network.RetrofitClient.apiService.register(
                     com.chavez.mobile2.network.RegisterRequest(
@@ -62,7 +64,6 @@ class RegisterActivity : AppCompatActivity() {
                 )
                 if (response.isSuccessful && response.body()?.success == true) {
                     Toast.makeText(this@RegisterActivity, "Registration successful!", Toast.LENGTH_SHORT).show()
-                    // Optionally, go to login screen
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     finish()
                 } else {

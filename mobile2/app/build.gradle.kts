@@ -2,6 +2,7 @@ repositories {
     google()
     mavenCentral()
 }
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -22,6 +23,7 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -31,6 +33,17 @@ android {
             )
         }
     }
+
+    // ✅ FIX STARTS HERE
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    // ✅ FIX ENDS HERE
 }
 
 dependencies {

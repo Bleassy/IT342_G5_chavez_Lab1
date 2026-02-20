@@ -5,11 +5,13 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
+import Modal from './components/Modal';
 import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -49,6 +51,15 @@ function App() {
     } catch (error) {
       console.error('Logout failed:', error);
     }
+    setShowLogoutModal(false);
+  };
+
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutModal(false);
   };
 
   if (loading) {
@@ -72,7 +83,7 @@ function App() {
                   <>
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/profile">Profile</Link>
-                    <button onClick={handleLogout}>Logout</button>
+                    <button onClick={handleLogoutClick}>Logout</button>
                   </>
                 ) : (
                   <>
@@ -80,6 +91,13 @@ function App() {
                     <Link to="/register">Register</Link>
                   </>
                 )}
+                    <Modal
+                      isOpen={showLogoutModal}
+                      title="Confirm Logout"
+                      message="Are you sure you want to logout?"
+                      onConfirm={handleLogout}
+                      onCancel={handleCancelLogout}
+                    />
               </div>
             </div>
           </div>
